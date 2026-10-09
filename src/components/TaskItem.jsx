@@ -1,4 +1,7 @@
-export default function TaskItem({
+
+import { memo } from "react";
+
+function TaskItem({
   task,
   onEdit,
   onDelete,
@@ -31,7 +34,6 @@ export default function TaskItem({
           onChange={(e) =>
             onStatusChange(task.id, e.target.value)
           }
-          aria-label={`Status for ${task.title}`}
         >
           <option value="Pending">Pending</option>
           <option value="In Progress">In Progress</option>
@@ -59,3 +61,5 @@ export default function TaskItem({
     </div>
   );
 }
+
+export default memo(TaskItem);

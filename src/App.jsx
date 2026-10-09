@@ -133,24 +133,26 @@ function Dashboard() {
     setDeleteId(null);
   }, [deleteId, setTasks]);
 
-  function handleEdit(task) {
-    setEditingTask(task);
+  
+const handleEdit = useCallback((task) => {
+  setEditingTask(task);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}, []);
 
-  function handleStatusChange(id, status) {
-    setTasks((previous) =>
-      previous.map((task) =>
-        task.id === id
-          ? { ...task, status }
-          : task
-      )
-    );
-  }
+const handleStatusChange = useCallback((id, status) => {
+  setTasks((previous) =>
+    previous.map((task) =>
+      task.id === id
+        ? { ...task, status }
+        : task
+    )
+  );
+}, [setTasks]);
+
 
   return (
     <div className={`app ${theme}`}>
